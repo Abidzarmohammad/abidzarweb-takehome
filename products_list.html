@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Salon Ayu Teh Nuni</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.1/font/bootstrap-icons.css">
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"/>
+        <link href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css"/>
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/css/dataTables.bootstrap.css"> -->
+        <!--bootstrap-->
+        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+        <style>
+            .dataTables_filter {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 class="site-heading text-center text-faded d-none d-lg-block">
+                <span class="site-heading-upper text-primary mb-3">Jl. Puri Kencana A5 Kembangan Selatan</span>
+                <span class="site-heading-lower">Salon Ayu Teh Nuni</span>
+            </h1>
+        </header>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Start Bootstrap</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="index.html">Home</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about.html">About</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="products.html">Products</a></li>
+                        <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store.html">Store</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section class="page-section">
+            <div class="container">
+                <div>
+                    <h3 style="color: white">Price List <span id="title"></span></h3> 
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <a href="products.html"><button class="btn btn-md btn-danger" style="margin-bottom: 5px;"><i class="bi bi-arrow-left-circle-fill"></i>&nbspBack to Category</button></a>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="input-group">
+                                    <input id="searchLead"  type="text" class="form-control" onkeyup="searchCustom('tbPriceList','searchLead')" placeholder="Search Anything">							
+                                    <div class="input-group-btn">
+                                        <div class="dropdown">
+                                            <button type="button" id="btnShowEntryLead" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"  aria-expanded="false">
+                                                Show 10 entries
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                <li><a onclick="$('#tbPriceList').DataTable().page.len(10).draw();$('#btnShowEntryLead').html('Show 10 entries')" class="dropdown-item" href="#">10</a></li>
+                                                <li><a onclick="$('#tbPriceList').DataTable().page.len(25).draw();$('#btnShowEntryLead').html('Show 25 entries')" class="dropdown-item" href="#">25</a></li>
+                                                <li><a onclick="$('#tbPriceList').DataTable().page.len(50).draw();$('#btnShowEntryLead').html('Show 50 entries')" class="dropdown-item" href="#">50</a></li>
+                                                <li><a onclick="$('#tbPriceList').DataTable().page.len(100).draw();$('#btnShowEntryLead').html('SShow 100 entries')" class="dropdown-item" href="#">100</a></li>
+                                            </ul>
+                                        </div>                                      
+                                    </div>
+                                    <span class="input-group-btn">
+                                        <button onclick="searchCustom('tbPriceList','searchLead')" type="button" class="btn btn-default btn-flat">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table" id="tbPriceList" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Nama Perawatan</th>
+                                                <th>Harga</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer text-faded text-center py-5">
+            <div class="container"><p class="m-0 small">Copyright &copy; Moh. Abidzar 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <!-- <script src="js/scripts.js"></script> -->
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+        <script>
+            let hair_Service = {
+                "data": [
+                    [
+                    "1",
+                    "Hair Cut",
+                    "$20.00"
+                    ],
+                    [
+                    "2",
+                    "Head Message",
+                    "$25.00"
+                    ],
+                    [
+                    "3",
+                    "Flat Iron",
+                    "$60.00"
+                    ],
+                    [
+                    "4",
+                    "Roller Setting",
+                    "$20.00"
+                    ],
+                    [
+                    "5",
+                    "Rebounding",
+                    "$40.00"
+                    ],
+                    [
+                    "6",
+                    "Smoothering",
+                    "$50.00"
+                    ],
+                    [
+                    "7",
+                    "Hair Cut Owl",
+                    "$20.00"
+                    ],
+                    [
+                    "8",
+                    "Head Message Hot",
+                    "$25.00"
+                    ],
+                    [
+                    "9",
+                    "Flat Iron Red",
+                    "$60.00"
+                    ],
+                    [
+                    "10",
+                    "Roller Setting Gel",
+                    "$20.00"
+                    ],
+                    [
+                    "11",
+                    "Rebounding Cepmek",
+                    "$40.00"
+                    ],
+                    [
+                    "12",
+                    "Smoothering Pink",
+                    "$50.00"
+                    ],
+                    [
+                    "13",
+                    "Hair Cut Blue",
+                    "$20.00"
+                    ],
+                    [
+                    "14",
+                    "Head Message Cold",
+                    "$25.00"
+                    ],
+                    [
+                    "15",
+                    "Flat Iron Brown",
+                    "$60.00"
+                    ],
+                    [
+                    "16",
+                    "Roller Setting Yellow",
+                    "$20.00"
+                    ],
+                    [
+                    "17",
+                    "Rebounding Grey",
+                    "$40.00"
+                    ],
+                    [
+                    "18",
+                    "Smoothering Back",
+                    "$50.00"
+                    ],
+                    [
+                    "19",
+                    "Hair Cut Glow",
+                    "$20.00"
+                    ],
+                    [
+                    "20",
+                    "Head Message Wong",
+                    "$25.00"
+                    ],
+                    [
+                    "21",
+                    "Flat Iron Blue",
+                    "$60.00"
+                    ],
+                    [
+                    "22",
+                    "Roller Setting Red",
+                    "$20.00"
+                    ],
+                    [
+                    "23",
+                    "Rebounding Noise",
+                    "$40.00"
+                    ],
+                    [
+                    "24",
+                    "Smoothering Gold",
+                    "$50.00"
+                    ],
+                    
+                ]
+                
+            };
+
+            let waxing = {
+                "data": [
+                [
+                    "1",
+                    "Full Arms",
+                    "$20.00"
+                    ],
+                    [
+                    "2",
+                    "Under Arms",
+                    "$25.00"
+                    ],
+                    [
+                    "3",
+                    "Half Arms",
+                    "$23.00"
+                    ],
+                    [
+                    "4",
+                    "Half Legs",
+                    "$20.00"
+                    ],
+                    [
+                    "5",
+                    "Face",
+                    "$15.00"
+                    ],
+                    [
+                    "6",
+                    "Stomach/Back",
+                    "$22.00"
+                    ],
+                    [
+                    "7",
+                    "Side Neck",
+                    "$20.00"
+                    ],
+                    [
+                    "8",
+                    "French Wax",
+                    "$20.00"
+                    ],
+                    [
+                    "9",
+                    "Brazilian Wax",
+                    "$28.00"
+                    ],
+                    [
+                    "10",
+                    "Bikini",
+                    "$24.00"
+                    ],
+                ]
+                
+            };
+
+            let facial = {
+                "data": [
+                [
+                "1",
+                    "Normal",
+                    "$17.00"
+                    ],
+                    [
+                    "2",
+                    "Fruit",
+                    "$19.00"
+                    ],
+                    [
+                    "3",
+                    "Aroma",
+                    "$21.00"
+                    ],
+                    [
+                    "4",
+                    "Instant Glow",
+                    "$22.00"
+                    ],
+                    [
+                    "5",
+                    "Gold Facial",
+                    "$23.00"
+                    ],
+                    [
+                    "6",
+                    "Diamond",
+                    "$25.00"
+                    ],
+                    [
+                    "7",
+                    "Bridal",
+                    "$24.00"
+                    ],
+                    [
+                    "8",
+                    "Mint-Facial",
+                    "$20.00"
+                    ],
+                ]
+                
+            };
+
+            let makeUp = {
+                "data": [
+                    [
+                    "1",
+                    "Bridal Make-Up",
+                    "$26.00"
+                    ],
+                    [
+                    "2",
+                    "Party Make-Up",
+                    "$27.00"
+                    ],
+                    [
+                    "3",
+                    "Engagement Make-Up",
+                    "$26.00"
+                    ],
+                    [
+                    "4",
+                    "Receptiont Make-Up",
+                    "$15.00"
+                    ],
+                    [
+                    "5",
+                    "Hair Do",
+                    "$14.00"
+                    ],
+                    [
+                    "6",
+                    "Eye Make-Up",
+                    "$20.00"
+                    ],
+                    [
+                    "7",
+                    "Hair Style",
+                    "$23.00"
+                    ],
+                    [
+                    "8",
+                    "Casual Make-Up",
+                    "$20.00"
+                    ],
+                ]
+                
+            };
+
+            let bleach = {
+                "data": [
+                    [
+                    "1",
+                    "Simple Basic",
+                    "$20.00"
+                    ],
+                    [
+                    "2",
+                    "Deluxe",
+                    "$22.00"
+                    ],
+                    [
+                    "3",
+                    "Skin Lightening Treatment",
+                    "$25.00"
+                    ],
+                    [
+                    "4",
+                    "Facial Bleach",
+                    "$15.00"
+                    ],
+                    [
+                    "5",
+                    "Body",
+                    "$30.00"
+                    ],
+                ]
+                
+            };
+
+            let pedicure = {
+                "data": [
+                    [
+                    "1",
+                    "Fruit",
+                    "$10.00"
+                    ],
+                    [
+                    "2",
+                    "Oxi/De-Tan",
+                    "$25.00"
+                    ],
+                    [
+                    "3",
+                    "Gold",
+                    "$10.00"
+                    ],
+                    [
+                    "4",
+                    "Hand/Feel",
+                    "$20.00"
+                    ],
+                ]
+                
+            };
+
+            let dataTreatment = null;
+
+            if(sessionStorage.getItem('title') == 'Hair Service'){
+                dataTreatment = hair_Service.data
+            }else if(sessionStorage.getItem('title') == 'Waxing'){
+                dataTreatment = waxing.data
+            }else if(sessionStorage.getItem('title') == 'Facial'){
+                dataTreatment = facial.data
+            }else if(sessionStorage.getItem('title') == 'Make-up'){
+                dataTreatment = makeUp.data
+            }else if(sessionStorage.getItem('title') == 'Bleach'){
+                dataTreatment = bleach.data
+            }else{
+                dataTreatment = pedicure.data
+            }
+
+            $(document).ready(function () {
+                $("#title").text(sessionStorage.getItem('title'))
+                $('#tbPriceList').DataTable({
+                    data:dataTreatment,
+                    "bLengthChange": false,
+                    "bFilter": true,
+                });
+            });
+
+            function searchCustom(id_table,id_seach_bar){
+                $("#" + id_table).DataTable().search($('#' + id_seach_bar).val()).draw();
+            }
+        </script>
+    </body>
+</html>
