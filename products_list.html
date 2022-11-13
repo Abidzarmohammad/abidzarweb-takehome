@@ -56,10 +56,19 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row" style="margin-bottom: 5px;">
-                            <div class="col-md-8">
+                            <div class="col-md-4 col-xs-12">
                                 <a href="products.html"><button class="btn btn-md btn-danger" style="margin-bottom: 5px;"><i class="bi bi-arrow-left-circle-fill"></i>&nbspBack to Category</button></a>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 col-xs-12">
+                                <select class="form-select" id="sorting" onchange="searchSort('tbPriceList',this.value)">
+                                    <option selected>Sorting by</option>
+                                    <option value="nameAsc">Sorting Name - Asc</option>
+                                    <option value="nameDesc">Sorting Name - Desc</option>
+                                    <option value="priceLow">Sorting Price - (Low - High)</option>
+                                    <option value="priceHigh">Sorting Price - (High - Low)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 col-xs-12">
                                 <div class="input-group">
                                     <input id="searchLead"  type="text" class="form-control" onkeyup="searchCustom('tbPriceList','searchLead')" placeholder="Search Anything">							
                                     <div class="input-group-btn">
@@ -474,6 +483,31 @@
 
             function searchCustom(id_table,id_seach_bar){
                 $("#" + id_table).DataTable().search($('#' + id_seach_bar).val()).draw();
+            }
+
+            function searchSort(id_table,value){
+                console.log(value)
+                if(value == 'nameAsc'){
+                    $("#" + id_table).DataTable()
+                    .order( [[ 1, 'asc' ]] )
+                    .draw( false );
+                }else if (value == 'nameDesc') {
+                    $("#" + id_table).DataTable()
+                    .order( [[ 1, 'desc' ]] )
+                    .draw( false );
+                }else if (value == 'priceLow') {
+                    $("#" + id_table).DataTable()
+                    .order( [[ 2, 'asc' ]] )
+                    .draw( false );
+                }else if (value == 'priceHigh') {
+                    $("#" + id_table).DataTable()
+                    .order( [[ 2, 'desc' ]] )
+                    .draw( false );
+                }else{
+                    $("#" + id_table).DataTable()
+                    .order( [[ 0, 'asc' ]] )
+                    .draw( false );
+                }
             }
         </script>
     </body>
